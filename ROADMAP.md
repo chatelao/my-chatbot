@@ -58,7 +58,9 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 - [ ] **Verification**: Successful manual and automated validation of the MVP flow
 
 ## Phase 5: Advanced Features & Documentation ⏳
-- [ ] Implement Session Management and basic Authentication
+- [x] Implement basic API Key authentication for the Backend Orchestrator (2025-05-22)
+- [ ] Implement in-memory session management in the Backend
+- [ ] Add session-id support to the Frontend UI
 - [ ] Integrate RAG (Retrieval-Augmented Generation) support
 - [ ] Configure ReadTheDocs (RTD) for automated documentation publishing
 - [ ] Perform performance and throughput testing

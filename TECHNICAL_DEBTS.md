@@ -3,7 +3,9 @@
 This document logs technical debts and areas for improvement identified during development.
 
 ## Phase 2: MVP - Backend Orchestrator
-- [ ] **Authentication**: The current backend lacks authentication. Any user can access the chat completion endpoint.
+- [x] **Authentication**: Basic API Key authentication has been implemented.
+    - *Debt*: The API key is currently hardcoded in the frontend (`ChatInterface.jsx`) for the MVP. This must be refactored to use a secure session-based or environment-driven approach in Phase 5.
+    - *Debt*: A more robust solution (e.g., JWT, OAuth2) should be considered for enterprise use.
 - [ ] **Session Management**: No server-side session management. Conversation history is currently managed by the frontend only.
 - [ ] **Error Handling**: Basic error handling is in place, but more robust handling of edge cases in SSE streaming is needed.
 

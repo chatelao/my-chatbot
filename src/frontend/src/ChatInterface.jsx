@@ -28,7 +28,10 @@ const ChatInterface = () => {
     try {
       const response = await fetch('/api/chat/completions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-App-Api-Key': 'dev-key' // Hardcoded for MVP, should be managed via session/auth in Phase 5
+        },
         body: JSON.stringify({
           model: 'stub-model',
           messages: [...messages, userMessage],

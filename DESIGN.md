@@ -15,8 +15,9 @@ The system is structured into three distinct layers, each with specific technica
    - Formats requests for the vLLM engine and manages the streaming response back to the UI.
 
 3. **Inference Engine Layer**:
-   - vLLM instance running on specialized GPU hardware.
-   - Exposes an OpenAI-compatible API.
+   - **Production**: vLLM instance running on specialized GPU hardware (e.g., vast.ai).
+   - **Local Development**: Ollama instance running on the developer's local machine.
+   - Both expose an OpenAI-compatible API to the Backend Orchestrator.
 
 # Technical Interfaces
 - **UI ↔ Backend**:
@@ -27,6 +28,7 @@ The system is structured into three distinct layers, each with specific technica
   - **Method**: POST.
   - **Protocol**: HTTP/HTTPS.
   - **Format**: OpenAI-compatible Chat Completion JSON.
+  - **Configuration**: The Backend Orchestrator uses environment variables (e.g., `INFERENCE_API_BASE` and `INFERENCE_API_KEY`) to toggle between the local Ollama endpoint and the production vLLM endpoint.
 
 # Technology Stack
 
@@ -75,8 +77,8 @@ The system is structured into three distinct layers, each with specific technica
 | Component | Status | Technical Detail |
 |-----------|--------|------------------|
 | **UI** | 🔴 Planned | React 18, Tailwind CSS, SSE Client implementation |
-| **Backend** | 🔴 Planned | FastAPI, Python 3.10+, Sticky Session Routing |
-| **Inference**| 🔴 Planned | vLLM (OpenAI API mode), APC Enabled |
+| **Backend** | 🔴 Planned | FastAPI, Python 3.10+, StreamingResponse integration, Multi-engine support, Sticky Session Routing |
+| **Inference**| 🔴 Planned | vLLM (Production), Ollama (Development) |
 
 # Summary of Discarded Alternatives
 - **Frontend Framework**: Vue.js and Next.js were discarded in favor of React to leverage its superior ecosystem and state management capabilities for interactive chat UIs.

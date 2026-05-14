@@ -35,6 +35,7 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 ## Phase 2: MVP - Backend Orchestrator ⏳
 - [ ] Implement basic FastAPI server in `src/backend`
 - [ ] Implement OpenAI-compatible client for vLLM communication
+- [ ] Implement configuration for switching between local Ollama and remote vLLM
 - [ ] Implement SSE (Server-Sent Events) endpoint for streaming responses
 - [ ] Create unit tests for backend logic in `test/backend`
 - [ ] Implement integration tests for vLLM proxying (using mocks)
@@ -51,6 +52,7 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 ## Phase 4: Integration & MVP Validation ⏳
 - [ ] Connect Frontend UI to Backend Orchestrator
 - [ ] Perform End-to-End (E2E) testing of the full flow (UI -> Backend -> vLLM Mock)
+- [ ] Verify local development flow with Ollama
 - [ ] Deploy MVP to a test instance on vast.ai
 - [ ] **Verification**: Successful manual and automated validation of the MVP flow
 

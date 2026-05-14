@@ -22,6 +22,7 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 ## Phase 1: Project Foundation & CI/CD Setup 🚧
 - [x] Initialize project structure (directories and placeholders) (2025-01-24)
+- [x] Create `TOP_ARCHITECTURE.puml` (2025-01-24)
 - [ ] Create `src/install.sh` for development environment setup
 - [ ] Create `test/install.sh` for testing tools setup
 - [ ] Configure GitHub Action Workflow for CI/CD

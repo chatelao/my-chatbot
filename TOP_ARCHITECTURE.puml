@@ -8,9 +8,15 @@ package "External Services" {
     [GitHub Actions] as GHA #LightGray
 }
 
-node "Vast.ai Instance" {
-    component "Inference Engine" as Inference {
+node "Vast.ai Instance (Production)" {
+    component "Inference Engine" as InferenceProd {
         [vLLM]
+    }
+}
+
+node "Local Machine (Development)" {
+    component "Inference Engine" as InferenceDev {
+        [Ollama]
     }
 }
 
@@ -28,8 +34,10 @@ actor "User" as User
 
 User <--> UI : Interactions
 UI -right-> Backend : 1. POST /prompt
-Backend -right-> vLLM : 2. OpenAI API Request
-vLLM -.left.> Backend : 3. Stream Tokens
+Backend -right-> InferenceProd : 2. OpenAI API (vLLM)
+Backend -down-> InferenceDev : 2. OpenAI API (Ollama)
+InferenceProd -.left.> Backend : 3. Stream Tokens
+InferenceDev -.up.> Backend : 3. Stream Tokens
 Backend -.left.> UI : 4. SSE (Server-Sent Events)
 
 GHA -down-> RTD : Publish Documentation

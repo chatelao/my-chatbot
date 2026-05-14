@@ -32,8 +32,8 @@ Inspired by the modular structure of the Renode RP2040 simulation project, the f
 |-------|------------------|--------------------|
 | UI | Responsive Web Framework | Modern Frontend Framework |
 | Backend | API Orchestration | Lightweight Backend Framework |
-| Inference | High-throughput Engine | vLLM |
-| Hosting | Cost-effective GPU | vast.ai |
+| Inference | High-throughput Engine | vLLM (Production), Ollama (Local Dev) |
+| Hosting | Cost-effective GPU | vast.ai (Production), Local Machine (Local Dev) |
 | Documentation | Automated Publishing | ReadTheDocs (RTD) |
 
 # Component Capabilities
@@ -47,9 +47,9 @@ Following the status-tracking pattern from the Renode RP2040 project, the initia
 
 # Alternatives
 ## 1. Inference Engine
-- **Alternative A: vLLM (Preferred)**: High-throughput serving with PagedAttention. Best for performance and resource utilization.
+- **Alternative A: vLLM (Preferred for Production)**: High-throughput serving with PagedAttention. Best for performance and resource utilization in a production environment.
 - **Alternative B: Text Generation Inference (TGI)**: Developed by Hugging Face, robust but has different licensing and performance characteristics.
-- **Alternative C: Ollama**: Simple to use but less optimized for high-throughput production web serving compared to vLLM.
+- **Alternative C: Ollama (Preferred for Local Development)**: Extremely simple to set up and run on local hardware. While less optimized for high-throughput production serving than vLLM, it is ideal for rapid local prototyping and testing.
 
 ## 2. Hosting Platform
 - **Alternative A: vast.ai (Preferred)**: Peer-to-peer GPU marketplace offering extremely competitive pricing for spot instances.
@@ -62,6 +62,6 @@ Following the status-tracking pattern from the Renode RP2040 project, the initia
 - **Alternative C: GitBook**: User-friendly UI, but may have limitations on the free tier for certain automation workflows.
 
 # Summary of Discarded Alternatives
-- **Inference Engine**: TGI and Ollama were discarded in favor of vLLM due to its superior throughput and memory management (PagedAttention), which aligns with the goal of an efficient private engine.
+- **Inference Engine**: TGI was discarded. Ollama was discarded for production use in favor of vLLM due to vLLM's superior throughput and memory management (PagedAttention), but Ollama is retained as the primary choice for local development.
 - **Hosting Platform**: RunPod and AWS/GCP were discarded in favor of vast.ai to minimize costs, leveraging the "Assume a running vLLM on vast.ai" requirement.
 - **Documentation Publishing**: GitHub Pages and GitBook were discarded in favor of ReadTheDocs to ensure seamless "ReadTheDocs.org" integration as specified in `GEMINI.md`.

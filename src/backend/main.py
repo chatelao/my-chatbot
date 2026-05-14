@@ -2,7 +2,8 @@ import os
 import json
 import httpx
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from .schemas import ChatCompletionRequest
 
@@ -78,3 +79,13 @@ async def health_check():
             "model_name": MODEL_NAME
         }
     }
+
+# Serve Frontend static files
+FRONTEND_BUILD_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "build")
+
+if os.path.exists(FRONTEND_BUILD_DIR):
+    app.mount("/", StaticFiles(directory=FRONTEND_BUILD_DIR, html=True), name="static")
+else:
+    @app.get("/")
+    async def serve_index():
+        return {"message": "Frontend build not found. Please run 'npm run build' in src/frontend."}

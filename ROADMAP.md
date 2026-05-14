@@ -34,13 +34,13 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 ## Phase 2: MVP - Backend Orchestrator 🚧
 - [x] Define API interfaces and Pydantic models (2025-05-22)
-- [ ] Implement basic FastAPI server in `src/backend`
-- [ ] Implement OpenAI-compatible client for vLLM communication
-- [ ] Implement configuration for switching between local Ollama and remote vLLM
+- [x] Implement basic FastAPI server in `src/backend` (2025-05-22)
+- [x] Implement OpenAI-compatible client for vLLM communication (2025-05-22)
+- [x] Implement configuration for switching between local Ollama and remote vLLM (2025-05-22)
 - [x] Implement stubbed SSE (Server-Sent Events) endpoint for streaming responses (2025-05-22)
-- [ ] Create unit tests for backend logic in `test/backend`
-- [ ] Implement integration tests for vLLM proxying (using mocks)
-- [ ] **Verification**: Ensure `pytest` runs successfully in CI/CD
+- [x] Create unit tests for backend logic in `test/backend` (2025-05-22)
+- [x] Implement integration tests for vLLM proxying (using mocks) (2025-05-22)
+- [x] **Verification**: Ensure `pytest` runs successfully in CI/CD (2025-05-22)
 
 ## Phase 3: MVP - Frontend UI 🚧
 - [x] Initialize React project structure in `src/frontend` (2025-05-22)

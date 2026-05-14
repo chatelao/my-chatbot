@@ -1,42 +1,80 @@
-import asyncio
+import os
 import json
-from fastapi import FastAPI
+import httpx
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
+from dotenv import load_dotenv
 from .schemas import ChatCompletionRequest
+
+# Load environment variables
+load_dotenv()
+
+INFERENCE_API_BASE = os.getenv("INFERENCE_API_BASE", "http://localhost:11434/v1")
+INFERENCE_API_KEY = os.getenv("INFERENCE_API_KEY", "ollama")
+MODEL_NAME = os.getenv("MODEL_NAME", "llama3")
 
 app = FastAPI(title="AI Web Chatbot Backend")
 
 @app.post("/api/chat/completions")
 async def chat_completions(request: ChatCompletionRequest):
     """
-    OpenAI-compatible chat completions endpoint that returns an SSE stream.
+    OpenAI-compatible chat completions endpoint that proxies to a vLLM/Ollama engine.
     """
-    async def event_generator():
-        # Stub implementation of SSE streaming
-        mock_tokens = ["Hello", "!", " This", " is", " a", " stubbed", " response", " from", " the", " backend", "."]
+    # Use the model from request if provided, otherwise use default
+    model = request.model if request.model != "stub-model" else MODEL_NAME
 
-        for token in mock_tokens:
-            # Match OpenAI SSE format
-            chunk = {
-                "id": "chatcmpl-mock",
-                "object": "chat.completion.chunk",
-                "created": 123456789,
-                "model": request.model,
-                "choices": [
-                    {
-                        "index": 0,
-                        "delta": {"content": token},
-                        "finish_reason": None
-                    }
-                ]
-            }
-            yield f"data: {json.dumps(chunk)}\n\n"
-            await asyncio.sleep(0.1)
+    payload = {
+        "model": model,
+        "messages": [m.model_dump() for m in request.messages],
+        "stream": request.stream
+    }
 
-        yield "data: [DONE]\n\n"
+    headers = {
+        "Authorization": f"Bearer {INFERENCE_API_KEY}",
+        "Content-Type": "application/json"
+    }
 
-    return StreamingResponse(event_generator(), media_type="text/event-stream")
+    async def stream_generator():
+        try:
+            async with httpx.AsyncClient(timeout=60.0) as client:
+                async with client.stream(
+                    "POST",
+                    f"{INFERENCE_API_BASE}/chat/completions",
+                    json=payload,
+                    headers=headers
+                ) as response:
+                    if response.status_code != 200:
+                        error_detail = await response.aread()
+                        yield f"data: {json.dumps({'error': 'Inference engine error', 'detail': error_detail.decode()})}\n\n"
+                        yield "data: [DONE]\n\n"
+                        return
+
+                    async for line in response.aiter_lines():
+                        if line:
+                            yield f"{line}\n\n"
+        except Exception as e:
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
+            yield "data: [DONE]\n\n"
+
+    if request.stream:
+        return StreamingResponse(stream_generator(), media_type="text/event-stream")
+    else:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(
+                f"{INFERENCE_API_BASE}/chat/completions",
+                json=payload,
+                headers=headers
+            )
+            if response.status_code != 200:
+                raise HTTPException(status_code=response.status_code, detail=response.text)
+            return response.json()
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "config": {
+            "inference_api_base": INFERENCE_API_BASE,
+            "model_name": MODEL_NAME
+        }
+    }

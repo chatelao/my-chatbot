@@ -1,0 +1,39 @@
+@startuml TOP_ARCHITECTURE
+
+!theme materia-outline
+
+package "External Services" {
+    [vast.ai] as VastAI #LightBlue
+    [ReadTheDocs] as RTD #LightGreen
+    [GitHub Actions] as GHA #LightGray
+}
+
+node "Vast.ai Instance" {
+    component "Inference Engine" as Inference {
+        [vLLM]
+    }
+}
+
+package "Web Application" {
+    component "Backend Orchestrator" as Backend {
+        [FastAPI]
+    }
+
+    component "User Interface" as UI {
+        [React + Tailwind CSS]
+    }
+}
+
+actor "User" as User
+
+User <--> UI : Interactions
+UI -right-> Backend : 1. POST /prompt
+Backend -right-> vLLM : 2. OpenAI API Request
+vLLM -.left.> Backend : 3. Stream Tokens
+Backend -.left.> UI : 4. SSE (Server-Sent Events)
+
+GHA -down-> RTD : Publish Documentation
+GHA -down-> UI : Build & Test
+GHA -down-> Backend : Test
+
+@enduml

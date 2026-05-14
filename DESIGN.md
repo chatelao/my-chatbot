@@ -1,6 +1,6 @@
 # Detailed Architecture
 
-![Top Level Architecture](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/chatelao/ai-web-chatbot/main/TOP_ARCHITECTURE.puml)
+![Top Level Architecture](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/chatelao/my-chatbot/main/TOP_ARCHITECTURE.puml)
 
 The system is structured into three distinct layers, each with specific technical responsibilities and interfaces.
 

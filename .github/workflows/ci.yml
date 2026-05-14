@@ -20,3 +20,26 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check for broken links (Mock)
         run: echo "Checking documentation links..."
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run src/install.sh
+        run: bash src/install.sh
+
+      - name: Run test/install.sh
+        run: bash test/install.sh
+
+      - name: Run verification script
+        run: bash test/verify_setup.sh
+
+      - name: Lint Backend
+        run: |
+          pip install flake8
+          flake8 src/backend --count --select=E9,F63,F7,F82 --show-source --statistics

@@ -1,0 +1,20 @@
+# Build and temporary files
+build/*
+!build/.gitkeep
+dist/
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+
+# Environment variables
+.env
+.env.local
+
+# Frontend build
+src/frontend/build/
+src/frontend/dist/

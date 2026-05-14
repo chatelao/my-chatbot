@@ -36,7 +36,6 @@ Build an AI web chatbot based on a private vLLM engine.
 # HOWTO
 - Assume a running vLLM on vast.ai
 - Keep `src/install.sh` to install all tools to build the application (test only tools, see below)
-- Extract all necessary part from `https://github.com/chatelao/Renode_RP2040`
 - Used “ReadTheDocs.org” (RTD) for documentation publishing from main branch
 
 # Testing Locally & with Github Action Workflow (GH Action WF)

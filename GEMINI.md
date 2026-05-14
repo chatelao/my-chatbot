@@ -26,11 +26,18 @@ Build an AI web chatbot based on a private vLLM engine.
 
 # `ROADMAP.md` handling
 - The `ROADMAP.md` is the final plan to implement the `CONCEPT.md` and `DESIGN.md` to achive the top goal
-- The `ROADMAP.md` file structured into Phases as chapters.
+- The `ROADMAP.md` file is structured into several key sections:
+  - **Progress Overview**: A table summarizing Phases, Descriptions, and Status (using ✅ for completed, 🚧 for in-progress, ⏳ for planned).
+  - **Goals**: A high-level list of project objectives with status emojis.
+  - **Phases**: Detailed chapters for each project phase.
 - The Tasks, and Subtasks if necessary, have checkboxes to show the progress.
 - Every task to be implemented has to be modest, feasible and reasonable.
   - If no such task is available, then break down a bigger steps to modest ones without implementing anything, just changing the `ROADMAP.md`.
-- The progress is updated with  with every increment.
+- Status Emojis:
+  - ✅: Completed
+  - 🚧: In Progress
+  - ⏳: Planned / To Do
+- The progress is updated with every increment.
 - The finished tasks are linked to the corresponding issue and timestamped at the end of the line.
 
 # HOWTO

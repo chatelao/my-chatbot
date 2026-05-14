@@ -11,12 +11,14 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 | 3 | MVP - Frontend UI | ⏳ |
 | 4 | Integration & MVP Validation | ⏳ |
 | 5 | Advanced Features & Documentation | ⏳ |
+| 6 | Enterprise Caching & Optimization | ⏳ |
 
 ## Goals
 - 🚧 Build a functional private AI web chatbot (MVP).
 - ⏳ Ensure data privacy by hosting on private infrastructure.
 - ⏳ Optimize for high-throughput using vLLM.
 - ⏳ Maintain 100% testability across all layers.
+- ⏳ Optimize TTFT and costs with Automatic Prefix Caching (APC).
 
 ---
 
@@ -58,3 +60,15 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 - [ ] Configure ReadTheDocs (RTD) for automated documentation publishing
 - [ ] Perform performance and throughput testing
 - [ ] Final review and logging of technical debts in `TECHNICAL_DEBTS.md`
+
+## Phase 6: Enterprise Caching & Optimization ⏳
+- [ ] Enable vLLM Automatic Prefix Caching (APC)
+    - [ ] Update vLLM startup scripts to include `--enable-prefix-caching`
+    - [ ] Configure `gpu_memory_utilization` to accommodate cache blocks
+- [ ] Implement Sticky Session Routing in Backend Orchestrator
+    - [ ] Add session-based routing middleware to FastAPI
+    - [ ] Verify session persistence across multi-replica deployments
+- [ ] Validate Caching Performance
+    - [ ] Benchmarking TTFT for multi-turn conversations (Cache Hit vs. Miss)
+    - [ ] Monitor VRAM utilization and eviction patterns
+- [ ] **Verification**: Documented TTFT reduction and cache hit rates in performance reports

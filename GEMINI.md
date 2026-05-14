@@ -4,7 +4,7 @@ Build an AI web chatbot based on a private vLLM engine.
 # Structure
 - `CONCEPT.md`: The overall structure of the product, including Business & Use Cases as well as the High-Level Architecture.
 - `DESIGN.md`: The detailed design of the solution, including the architecture, used tech stack for development, production and testing, etc.
-- `TOP_ARCHITECTURE.puml`: The top-level component overview showing all major modules and the dataflows between them. Included as dynamic-rendering in DESIGN.md.
+- `TOP_ARCHITECTURE.puml`: The top-level component overview showing all major modules and the dataflows between them.
 - `ROADMAP.md`: The list of accomplished and planned steps of the project.
 - `TECHNICAL_DEBTS.md`: If you find technical debts, like outdate components, security flaws, old patterns, etc. log them here, but don’t fix them until asked to do so.
 - `README.md`: Add a link to the GitHub pages if any are produced / present.
@@ -21,12 +21,14 @@ Build an AI web chatbot based on a private vLLM engine.
 
 # `DESIGN.md`: 
 - The `DESIGN.md` derives all necessary technological choices from `CONCEPT.md`.
-- It contains a detailed architecture of all components and their technical interfaces.
 - It does contain precise implementation choices.
 - Every major choice is first drawn out as three alternatives, the best one is chosen and the ohter, discarded ones kept in summary in the last chapter of the concept.
+- It contains a detailed architecture of all components and their technical interfaces.
+- Included the TOP_ARCHITECTURE.puml` as dynamic-rendering image as soon as available.
 
 # `ROADMAP.md` handling
 - The `ROADMAP.md` is the final plan to implement the `CONCEPT.md` and `DESIGN.md` to achive the top goal
+- Define the steps in a way to allow for parallelization by defining interfaces only first and implementing functions later.
 - The `ROADMAP.md` file is structured into several key sections:
   - **Progress Overview**: A table summarizing Phases, Descriptions, and Status (using ✅ for completed, 🚧 for in-progress, ⏳ for planned).
   - **Goals**: A high-level list of project objectives with status emojis.

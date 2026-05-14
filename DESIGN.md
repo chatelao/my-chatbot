@@ -1,5 +1,8 @@
 # Detailed Architecture
-The system is structured into three distinct layers, each with specific technical responsibilities and interfaces.
+
+![Top Level Architecture](TOP_ARCHITECTURE.puml)
+
+The system is derived from the goals and high-level architecture defined in [CONCEPT.md](CONCEPT.md). It is structured into three distinct layers, each with specific technical responsibilities and interfaces.
 
 1. **User Interface (UI) Layer**:
    - Built as a Single Page Application (SPA).

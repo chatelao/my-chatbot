@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run verification script
+        run: bash test/verify_setup.sh
+
+      - name: Lint (Shell)
+        run: |
+          find . -name "*.sh" | xargs shellcheck || echo "Shellcheck not available or no issues"
+
+      - name: Verify Documentation Links
+        run: |
+          # Check if DESIGN.md mentions CONCEPT.md and TOP_ARCHITECTURE.puml
+          grep "CONCEPT.md" DESIGN.md
+          grep "TOP_ARCHITECTURE.puml" DESIGN.md

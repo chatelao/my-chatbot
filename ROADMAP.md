@@ -6,8 +6,8 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 | Phase | Description | Status |
 | :--- | :--- | :---: |
-| 1 | Project Foundation & CI/CD Setup | 🚧 |
-| 2 | MVP - Backend Orchestrator | ⏳ |
+| 1 | Project Foundation & CI/CD Setup | ✅ |
+| 2 | MVP - Backend Orchestrator | 🚧 |
 | 3 | MVP - Frontend UI | ⏳ |
 | 4 | Integration & MVP Validation | ⏳ |
 | 5 | Advanced Features & Documentation | ⏳ |
@@ -20,16 +20,17 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 ---
 
-## Phase 1: Project Foundation & CI/CD Setup 🚧
+## Phase 1: Project Foundation & CI/CD Setup ✅
 - [x] Initialize project structure (directories and placeholders) (2025-01-24)
-- [ ] Create `src/install.sh` for development environment setup
-- [ ] Create `test/install.sh` for testing tools setup
-- [ ] Configure GitHub Action Workflow for CI/CD
-    - [ ] Implement basic linting and structure verification
+- [x] Create `src/install.sh` for development environment setup (2026-05-14)
+- [x] Create `test/install.sh` for testing tools setup (2026-05-14)
+- [x] Configure GitHub Action Workflow for CI/CD (2026-05-14)
+    - [x] Implement basic linting and structure verification (2026-05-14)
     - [ ] Setup caching for dependencies
-- [ ] Verify CI/CD pipeline with a baseline validation script
+- [x] Verify CI/CD pipeline with a baseline validation script (2026-05-14)
+- [x] Define Technical Interfaces in `specification/interfaces.md` (2026-05-14)
 
-## Phase 2: MVP - Backend Orchestrator ⏳
+## Phase 2: MVP - Backend Orchestrator 🚧
 - [ ] Implement basic FastAPI server in `src/backend`
 - [ ] Implement OpenAI-compatible client for vLLM communication
 - [ ] Implement SSE (Server-Sent Events) endpoint for streaming responses

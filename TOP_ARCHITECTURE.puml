@@ -1,0 +1,39 @@
+@startuml
+!theme plain
+skinparam componentStyle uml2
+
+package "User Interface (UI) Layer" {
+  [Web Interface] as UI
+}
+
+package "Backend Orchestrator Layer" {
+  [FastAPI Orchestrator] as Backend
+}
+
+package "Inference Engine Layer" {
+  [vLLM Engine] as vLLM
+}
+
+UI -right-> Backend : 1. POST /api/chat/completions (Prompt)
+Backend -right-> vLLM : 2. POST /v1/chat/completions (OpenAI Format)
+vLLM -left-> Backend : 3. Streamed Tokens
+Backend -left-> UI : 4. Server-Sent Events (SSE)
+
+note bottom of UI
+  React + Tailwind CSS
+  Markdown Rendering
+end note
+
+note bottom of Backend
+  FastAPI + Python
+  Session Management
+  Async Streaming
+end note
+
+note bottom of vLLM
+  vLLM on vast.ai
+  PagedAttention
+  OpenAI API Compatibility
+end note
+
+@enduml

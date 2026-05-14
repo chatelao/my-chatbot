@@ -4,6 +4,7 @@ Build an AI web chatbot based on a private vLLM engine.
 # Structure
 - `CONCEPT.md`: The overall structure of the product, including Business & Use Cases as well as the High-Level Architecture.
 - `DESIGN.md`: The detailed design of the solution, including the architecture, used tech stack for development, production and testing, etc.
+- `TOP_ARCHITECTURE.puml`: The top-level component overview showing all major modules and the dataflows between them. Included as dynamic-rendering in DESIGN.md.
 - `ROADMAP.md`: The list of accomplished and planned steps of the project.
 - `TECHNICAL_DEBTS.md`: If you find technical debts, like outdate components, security flaws, old patterns, etc. log them here, but don’t fix them until asked to do so.
 - `README.md`: Add a link to the GitHub pages if any are produced / present.

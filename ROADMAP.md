@@ -6,9 +6,9 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 | Phase | Description | Status |
 | :--- | :--- | :---: |
-| 1 | Project Foundation & CI/CD Setup | 🚧 |
-| 2 | MVP - Backend Orchestrator | ⏳ |
-| 3 | MVP - Frontend UI | ⏳ |
+| 1 | Project Foundation & CI/CD Setup | ✅ |
+| 2 | MVP - Backend Orchestrator | 🚧 |
+| 3 | MVP - Frontend UI | 🚧 |
 | 4 | Integration & MVP Validation | ⏳ |
 | 5 | Advanced Features & Documentation | ⏳ |
 | 6 | Enterprise Caching & Optimization | ⏳ |
@@ -22,29 +22,30 @@ This roadmap outlines the implementation plan for the AI web chatbot based on th
 
 ---
 
-## Phase 1: Project Foundation & CI/CD Setup 🚧
+## Phase 1: Project Foundation & CI/CD Setup ✅
 - [x] Initialize project structure (directories and placeholders) (2025-01-24)
 - [x] Create `TOP_ARCHITECTURE.puml` (2025-01-24)
-- [ ] Create `src/install.sh` for development environment setup
-- [ ] Create `test/install.sh` for testing tools setup
-- [ ] Configure GitHub Action Workflow for CI/CD
-    - [ ] Implement basic linting and structure verification
+- [x] Create `src/install.sh` for development environment setup (2025-05-22)
+- [x] Create `test/install.sh` for testing tools setup (2025-05-22)
+- [x] Configure GitHub Action Workflow for CI/CD (2025-05-22)
+    - [x] Implement basic linting and structure verification
     - [ ] Setup caching for dependencies
-- [ ] Verify CI/CD pipeline with a baseline validation script
+- [x] Verify CI/CD pipeline with a baseline validation script (2025-05-22)
 
-## Phase 2: MVP - Backend Orchestrator ⏳
+## Phase 2: MVP - Backend Orchestrator 🚧
+- [x] Define API interfaces and Pydantic models (2025-05-22)
 - [ ] Implement basic FastAPI server in `src/backend`
 - [ ] Implement OpenAI-compatible client for vLLM communication
 - [ ] Implement configuration for switching between local Ollama and remote vLLM
-- [ ] Implement SSE (Server-Sent Events) endpoint for streaming responses
+- [x] Implement stubbed SSE (Server-Sent Events) endpoint for streaming responses (2025-05-22)
 - [ ] Create unit tests for backend logic in `test/backend`
 - [ ] Implement integration tests for vLLM proxying (using mocks)
 - [ ] **Verification**: Ensure `pytest` runs successfully in CI/CD
 
-## Phase 3: MVP - Frontend UI ⏳
-- [ ] Initialize React project with Tailwind CSS in `src/frontend`
+## Phase 3: MVP - Frontend UI 🚧
+- [x] Initialize React project structure in `src/frontend` (2025-05-22)
 - [ ] Create responsive chat interface component
-- [ ] Implement SSE client for real-time message rendering
+- [x] Implement SSE client skeleton for real-time message rendering (2025-05-22)
 - [ ] Setup UI automation tests (e.g., Playwright)
     - [ ] Configure screenshot capture for each test step
 - [ ] **Verification**: UI tests run in CI/CD and store screenshots as assets

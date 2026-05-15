@@ -76,10 +76,11 @@ This phase adds essential enterprise features like session management and RAG su
 
 * ⏳ Implement Session Management and basic Authentication
     + ✅ Implement basic API Key Authentication (2026-05-15)
-    + ⏳ Implement server-side session storage
+    + ✅ Implement server-side session storage (2026-05-15)
 * ⏳ Integrate RAG (Retrieval-Augmented Generation) support
     + ⏳ Define retrieval strategy and data schema
-    + ⏳ Implement data ingestion and indexing pipeline
+    + ⏳ Setup Vector Database (e.g., ChromaDB)
+    + ⏳ Implement document parsing utility
     + ⏳ Implement context-aware retrieval logic for prompts
 * ⏳ Configure ReadTheDocs (RTD) for automated documentation publishing
 * ⏳ Perform performance and throughput testing

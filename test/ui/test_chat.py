@@ -27,6 +27,8 @@ def test_chat_flow(page: Page):
     take_screenshot(page, "02_message_typed")
 
     # 3. Sending the message
+    # Intercept API request to verify/add headers if needed,
+    # but the frontend should already send it.
     chat_input.press("Enter")
     take_screenshot(page, "03_message_sent")
 

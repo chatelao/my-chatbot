@@ -3,7 +3,7 @@
 This document logs technical debts and areas for improvement identified during development.
 
 ## Phase 2: MVP - Backend Orchestrator
-- [ ] **Authentication**: The current backend lacks authentication. Any user can access the chat completion endpoint.
+- [x] **Authentication**: The current backend lacks authentication. Any user can access the chat completion endpoint. (Resolved 2026-05-15)
 - [ ] **Session Management**: No server-side session management. Conversation history is currently managed by the frontend only.
 - [ ] **Error Handling**: Basic error handling is in place, but more robust handling of edge cases in SSE streaming is needed.
 

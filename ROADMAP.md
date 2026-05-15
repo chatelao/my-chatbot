@@ -66,7 +66,7 @@ This phase integrates the frontend and backend components and validates the end-
 
 * ✅ Connect Frontend UI to Backend Orchestrator (2025-05-22)
 * ✅ Perform End-to-End (E2E) testing of the full flow (UI -> Backend -> vLLM Mock) (2025-05-22)
-* ⏳ Verify local development flow with Ollama
+* ✅ Verify local development flow with Ollama (2026-05-15)
 * ⏳ Deploy MVP to a test instance on vast.ai
 * ⏳ **Verification**: Successful manual and automated validation of the MVP flow
 
@@ -75,7 +75,12 @@ This phase integrates the frontend and backend components and validates the end-
 This phase adds essential enterprise features like session management and RAG support, while also formalizing the project documentation.
 
 * ⏳ Implement Session Management and basic Authentication
+    + ✅ Implement basic API Key Authentication (2026-05-15)
+    + ⏳ Implement server-side session storage
 * ⏳ Integrate RAG (Retrieval-Augmented Generation) support
+    + ⏳ Define retrieval strategy and data schema
+    + ⏳ Implement data ingestion and indexing pipeline
+    + ⏳ Implement context-aware retrieval logic for prompts
 * ⏳ Configure ReadTheDocs (RTD) for automated documentation publishing
 * ⏳ Perform performance and throughput testing
 * ⏳ Final review and logging of technical debts in `TECHNICAL_DEBTS.md`

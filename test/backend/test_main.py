@@ -37,7 +37,8 @@ async def test_chat_completions_streaming(respx_mock):
 
     # Since we are using TestClient which is synchronous, we use it directly
     # But for streaming we might need something else or just check it works as expected
-    with client.stream("POST", "/api/chat/completions", json=payload) as response:
+    headers = {"X-App-Api-Key": "dev-key"}
+    with client.stream("POST", "/api/chat/completions", json=payload, headers=headers) as response:
         assert response.status_code == 200
         assert "text/event-stream" in response.headers["content-type"]
 
@@ -78,6 +79,22 @@ async def test_chat_completions_non_streaming(respx_mock):
         "stream": False
     }
 
-    response = client.post("/api/chat/completions", json=payload)
+    headers = {"X-App-Api-Key": "dev-key"}
+    response = client.post("/api/chat/completions", json=payload, headers=headers)
     assert response.status_code == 200
     assert response.json()["choices"][0]["message"]["content"] == "Hello there!"
+
+def test_chat_completions_unauthorized():
+    payload = {
+        "model": "stub-model",
+        "messages": [{"role": "user", "content": "Hi"}],
+        "stream": False
+    }
+    # No API Key
+    response = client.post("/api/chat/completions", json=payload)
+    assert response.status_code == 401
+
+    # Invalid API Key
+    headers = {"X-App-Api-Key": "wrong-key"}
+    response = client.post("/api/chat/completions", json=payload, headers=headers)
+    assert response.status_code == 401

@@ -1,8 +1,9 @@
 import os
 import json
 import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Security, Depends
 from fastapi.responses import StreamingResponse, FileResponse
+from fastapi.security.api_key import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from .schemas import ChatCompletionRequest
@@ -13,11 +14,23 @@ load_dotenv()
 INFERENCE_API_BASE = os.getenv("INFERENCE_API_BASE", "http://localhost:11434/v1")
 INFERENCE_API_KEY = os.getenv("INFERENCE_API_KEY", "ollama")
 MODEL_NAME = os.getenv("MODEL_NAME", "llama3")
+APP_API_KEY = os.getenv("APP_API_KEY", "dev-key")
 
 app = FastAPI(title="AI Web Chatbot Backend")
 
+API_KEY_NAME = "X-App-Api-Key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+
+async def get_api_key(api_key: str = Security(api_key_header)):
+    if api_key == APP_API_KEY:
+        return api_key
+    raise HTTPException(
+        status_code=401,
+        detail="Invalid or missing API Key"
+    )
+
 @app.post("/api/chat/completions")
-async def chat_completions(request: ChatCompletionRequest):
+async def chat_completions(request: ChatCompletionRequest, api_key: str = Depends(get_api_key)):
     """
     OpenAI-compatible chat completions endpoint that proxies to a vLLM/Ollama engine.
     """

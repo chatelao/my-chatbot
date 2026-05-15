@@ -15,6 +15,10 @@ venv/
 .env
 .env.local
 
+# Databases
+*.db
+*.sqlite
+
 # Frontend build
 src/frontend/build/
 src/frontend/dist/
